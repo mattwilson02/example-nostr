@@ -5,6 +5,8 @@ const EventList = () => {
   // The `events` state is used to store the events fetched from the relay server.
   const [events, setEvents] = useState<Set<NDKEvent> | []>([]);
 
+  // Events returned from the relay server are stored in a Set.
+  // In order to map, and return the JSX element, we need to convert the data structure to an array.
   const listOfEvents = Array.from(events);
 
   console.log(listOfEvents);
@@ -66,11 +68,10 @@ const EventList = () => {
         >
           <p
             style={{
-              flex: "wrap",
               display: "flex",
+              flex: "wrap",
               textWrap: "wrap",
               textAlign: "center",
-              textOverflow: "clip",
               fontFamily: "monospace",
             }}
           >
