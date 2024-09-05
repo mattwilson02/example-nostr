@@ -1,5 +1,6 @@
 import NDK, { NDKEvent, NDKKind } from "@nostr-dev-kit/ndk";
 import { useEffect, useMemo, useState } from "react";
+import AddEvent from "../AddEvent";
 
 const EventList = () => {
   // The `events` state is used to store the events fetched from the relay server.
@@ -9,7 +10,6 @@ const EventList = () => {
   // In order to map, and return the JSX element, we need to convert the data structure to an array.
   const listOfEvents = Array.from(events);
 
-  console.log(listOfEvents);
   /**
    * Create a new NDK instance.
    * The `explicitRelayUrls` option is used to specify the relay server to connect to.
@@ -54,31 +54,35 @@ const EventList = () => {
   }, [ndk]);
 
   return (
-    <div style={{ display: "flex", gap: 8, flexDirection: "column" }}>
-      <h1 style={{ fontFamily: "sans-serif" }}>List of Events</h1>
-      {listOfEvents.map((event) => (
-        <div
-          key={event.id}
-          style={{
-            border: "solid",
-            borderColor: "gray",
-            padding: 8,
-            borderRadius: 12,
-          }}
-        >
-          <p
+    <div style={{ display: "grid", gridTemplateColumns: "50vw 50vw", gap: 12 }}>
+      <div style={{ display: "flex", gap: 8, flexDirection: "column" }}>
+        <h1 style={{ fontFamily: "sans-serif" }}>List of Events</h1>
+        {listOfEvents.map((event) => (
+          <div
+            key={event.id}
             style={{
-              display: "flex",
-              flex: "wrap",
-              textWrap: "wrap",
-              textAlign: "center",
-              fontFamily: "monospace",
+              border: "solid",
+              borderColor: "gray",
+              padding: 8,
+              borderRadius: 12,
             }}
           >
-            {event.content}
-          </p>
-        </div>
-      ))}
+            <p
+              style={{
+                display: "flex",
+                flex: "wrap",
+                textWrap: "wrap",
+                textAlign: "center",
+                fontFamily: "monospace",
+              }}
+            >
+              {event.content}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <AddEvent />
     </div>
   );
 };

@@ -1,12 +1,16 @@
 import React from "react";
 import EventList from "./EventList";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 function App() {
-  return (
-    <div style={{ display: "grid", gridTemplateColumns: "50vw 50vw" }}>
-      <EventList />
-    </div>
-  );
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <EventList />,
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
 }
 
 export default App;
